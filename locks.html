@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Onlock - Robolink Kontrol Panel</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="../robolink/node_modules/flexmasonry/dist/flexmasonry.js"></script>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+  crossorigin="anonymous"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="style.css" />
+<style type="text/css">
+
+
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    img {
+        
+        max-width: 100%;
+        height: auto;
+    }
+    .demo {
+        max-width: 1600px;
+        min-height: 500px;
+        margin: 20px auto;
+        padding: 0 20px;
+        overflow-x: hidden;
+    }
+    .inner {
+        padding: 1px;
+	}
+	.center {
+  		position: absolute;
+  		top: 50%;
+  		left: 50%;
+  		transform: translate(-50%, -50%);
+  		font-size: 18px;
+}
+.container {
+  position: relative;
+}
+.login-content{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+}
+
+.img img{
+	width: 500px;
+}
+
+form{
+	width: 360px;
+}
+
+.login-content img{
+    height: 100px;
+}
+
+.login-content h2{
+	margin: 15px 0;
+	color: #333;
+	text-transform: uppercase;
+	font-size: 2.9rem;
+}
+
+.login-content .input-div{
+	position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.login-content .input-div.one{
+	margin-top: 0;
+}
+
+.i{
+	color: #d9d9d9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.i i{
+	transition: .3s;
+}
+
+.input-div > div{
+    position: relative;
+	height: 45px;
+}
+
+.input-div > div > h5{
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #999;
+	font-size: 18px;
+	transition: .3s;
+}
+
+.input-div:before, .input-div:after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 0%;
+	height: 2px;
+	background-color: #38d39f;
+	transition: .4s;
+}
+
+.input-div:before{
+	right: 50%;
+}
+
+.input-div:after{
+	left: 50%;
+}
+
+.input-div.focus:before, .input-div.focus:after{
+	width: 50%;
+}
+
+.input-div.focus > div > h5{
+	top: -5px;
+	font-size: 15px;
+}
+
+.input-div.focus > .i > i{
+	color: #38d39f;
+}
+
+.input-div > div > input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+	font-family: 'poppins', sans-serif;
+}
+
+.input-div.pass{
+	margin-bottom: 4px;
+}
+
+a{
+	display: block;
+	text-align: right;
+	text-decoration: none;
+	color: #999;
+	font-size: 0.9rem;
+	transition: .3s;
+}
+
+a:hover{
+	color: #38d39f;
+}
+
+.btn{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+.btn:hover{
+	background-position: right;
+}
+
+
+@media screen and (max-width: 1050px){
+	.container{
+		grid-gap: 5rem;
+	}
+}
+
+@media screen and (max-width: 1000px){
+	form{
+		width: 290px;
+	}
+
+	.login-content h2{
+        font-size: 2.4rem;
+        margin: 8px 0;
+	}
+
+	.img img{
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 900px){
+	.container{
+		grid-template-columns: 1fr;
+	}
+
+	.img{
+		display: none;
+	}
+
+	.wave{
+		display: none;
+	}
+
+	.login-content{
+		justify-content: center;
+	}
+
+
+}
+.lineHorizontal__container {
+  align-items: center;
+  display: flex;
+  height: 80px;
+}
+.lineHorizontal {
+  border-top: 1px solid rgb(30, 30, 30);
+  width: 100%;
+}
+
+.header{
+	width:100%;
+	height:70px;
+	background-color:rgb(240, 196, 77);
+}
+.logo{
+	color:#850000;
+	font-size:25px;
+	font-family:verdana;
+	text-align:left;
+	margin-top:0px;
+	float:left;
+	margin:0px;
+	line-height:50px;
+	padding-left:9px;
+}
+.header img {
+  float: left;
+  padding-top: 20px;
+  padding-left: 20px;
+  height: 50px;
+}
+
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+
+.parent {
+
+
+height: 100%;
+
+
+display: flex;
+
+
+align-items: center;
+
+
+justify-content: center;
+
+
+}
+
+.box{
+        position: relative;
+        display: inline-block; /* Make the width of box same as image */
+    }
+    .box .text{
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;        
+        text-align: center;
+        top: 40%; /* Adjust this value to move the positioned div up and down */
+        font-family: Arial,sans-serif;
+        color: rgb(82, 82, 82);
+        width: 60%; /* Set the width of the positioned div */
+    }
+
+    </style>
+    <link rel="stylesheet" href="../robolink/node_modules/flexmasonry/dist/flexmasonry.css">
+	<link rel="stylesheet" href="hostel.css" type="text/css" /> <!-- Theme Custom CSS -->
+	<link rel="stylesheet" href="customstyle.css" type="text/css" />
+
+	<!-- <style>
+
+		* { margin: 0; padding: 0; text-decoration: none }
+
+		body {
+			width: 100%;
+			height: auto;
+			background: #f5f5f5;
+			font-size: 13px;
+			font-family: 'Quicksand', sans-serif;
+		}
+
+		.container {
+			width: 80rem;
+			height: auto;
+			margin: 50px auto;
+		}
+
+		.lockers {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.lockers .locker {
+			width: 16%;
+			height: 150px;
+			padding: 10px 1%;
+			margin: 0 1% 20px 1%;
+			background-color: #f44336;
+			border-radius: 5px;
+			color: #fff;
+			cursor: pointer;
+			-webkit-box-shadow: 3px 3px 5px 3px rgba(0,0,0,0.2);
+			-moz-box-shadow: 3px 3px 5px 3px rgba(0,0,0,0.2);
+			box-shadow: 3px 3px 5px 3px rgba(0,0,0,0.2);
+			display: none;
+		}
+
+
+
+		.lockers .locker.closed {
+			display: block;
+			background-color: #f44336;
+		}
+
+		.lockers .locker.open {
+			display: block;
+			background-color: #0cb58b;
+		}
+
+		.row.no-gutter [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
+
+.row.no-gutter .thumbnail {
+  margin-bottom: 0;
+  padding: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row.no-gutter .thumbnail>img {
+  width: 100%;
+}
+	</style> -->
+</head>
+<body>
+
+			<!-- Header
+		============================================= -->
+		<header id="header" class="full-header border-0 header-size-custom" data-sticky-shrink="false">
+			<div id="header-wrap">
+				<div class="container-fluid pr-0">
+					<div class="header-row">
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo" class="col col-sm-auto">
+							<img src="onlocklogo.png" alt="Onlock Logo" style="padding: 20px;">
+						</div><!-- #logo end -->
+
+						<div class="header-misc">
+							 <button class="button font-weight-semibold" onclick="logout()">Logout</button>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+
+
+
+
+	<div class="container" style="padding: 300px; margin-top: -250px;">
+	<div><h4 style="text-align: center;"> Ürün yerleştirilecek dolap kapağını seçiniz.</h2></div>
+	<div class="grid">
+		<div class="lock box" data-id="1"><div class="inner"><img src="4x3.png" alt=""><div class="text">
+            <h4>1</h4>
+        </div></div></div>
+		<div class="lock box" data-id="4"><div class="inner"><img src="3x3.png" alt=""><div class="text">
+            <h4>4</h4>
+        </div></div></div>
+		<div class="lock box" data-id="8"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>8</h4>
+        </div></div></div>
+		<div class="lock box" data-id="13"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>13</h4>
+        </div></div></div>
+		<div class="lock box" data-id="2"><div class="inner"><img src="4x3.png" alt=""><div class="text">
+            <h4>2</h4>
+        </div></div></div>
+		<div class="lock box" data-id="5"><div class="inner"><img src="3x3.png" alt=""><div class="text">
+            <h4>5</h4>
+        </div></div></div>
+		<div class="lock box" data-id="9"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>Panel</h4>
+        </div></div></div>
+		<div class="lock box" data-id="14"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>14</h4>
+        </div></div></div>
+		<div class="lock box" data-id="3"><div class="inner"><img src="4x3.png" alt=""><div class="text">
+            <h4>3</h4>
+        </div></div></div>
+		<div class="lock box" data-id="6"><div class="inner"><img src="3x3.png" alt=""><div class="text">
+            <h4>6</h4>
+        </div></div></div>
+		<div class="lock box" data-id="10"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>10</h4>
+        </div></div></div>
+		<div class="lock box" data-id="15"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>15</h4>
+        </div></div></div>
+		<div><div class="inner"><img src="" alt=""></div></div>
+		<div class="lock box" data-id="7"><div class="inner"><img src="3x3.png" alt=""><div class="text">
+            <h4>7</h4>
+        </div></div></div>
+		<div class="lock box" data-id="11"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>11</h4>
+        </div></div></div>
+		<div class="lock box" data-id="16"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>16</h4>
+        </div></div></div>
+		<div><div class="inner"><img src="" alt=""></div></div>
+		<div><div class="inner"><img src="" alt=""></div></div>
+		<div class="lock box" data-id="12"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>12</h4>
+        </div></div></div>
+		<div class="lock box" data-id="17"><div class="inner"><img src="24x3.png" alt=""><div class="text">
+            <h4>17</h4>
+        </div></div></div>
+		<div><div class="inner"><img src="" alt=""></div></div>
+	</div>
+
+	</div>
+	<div class="lineHorizontal__container" style="margin-top: -200px;">
+	<div class="lineHorizontal"></div>
+  	</div>
+
+  	<div class="parent">
+
+	
+		<div class="login-content" >
+			<form action="locks.html">
+			
+				<h4>Yeni master şifre belirleyiniz.</h4>
+		
+				   <div class="input-div pass">
+					  <div class="i"> 
+						   <i class="fas fa-lock"></i>
+					  </div>
+					  <div class="div">
+						   <h5>Şifre</h5>
+						   <input type="text" id="pincode" class="input" value="">
+				   </div>
+				</div>
+				<input type="button" class="btn" value="Onayla" onclick="pinCodeConfirm()">
+				
+			</form>
+		</div>
+
+  	</div>
+
+
+	<script>
+
+
+		FlexMasonry.init('.grid', {
+    responsive: true,
+    breakpointCols: {
+        'min-width: 1500px': 4,
+        'min-width: 1200px': 4,
+        'min-width: 992px': 4,
+        'min-width: 768px': 4,
+		'min-width: 576px': 4,
+		'min-height: 992px' : 3
+    },
+    numCols: 4,
+});
+
+const inputs = document.querySelectorAll(".input");
+
+
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
+
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == "asdasd"){
+		parent.classList.remove("focus");
+	}
+}
+
+
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
+
+	</script>
+
+	<script>
+		var fs = require("fs");
+console.log("Going to write into existing file");
+// Open a new file with name input.txt and write Simply Easy Learning! to it.
+fs.writeFile('output.txt', 'Simply Easy Learning!', function(err) {
+   if (err) {
+      return console.error(err);
+   }
+   console.log("Data written successfully!");
+   console.log("Let's read newly written data");
+   // Read the newly written file and print all of its content on the console
+   fs.readFile('output.txt', function (err, data) {
+      if (err) {
+         return console.error(err);
+      }
+      console.log("Asynchronous read: " + data.toString());
+   });
+});
+	</script>
+  	  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyCWq5lir-EWWY_oyXcWFs5V9jzd-dAfY1E",
+		authDomain: "robolink-892ab.firebaseapp.com",
+		databaseURL: "https://robolink-892ab.firebaseio.com",
+		projectId: "robolink-892ab",
+		storageBucket: "robolink-892ab.appspot.com",
+		messagingSenderId: "685117193876",
+		appId: "1:685117193876:web:1e44f47b2d7dc215a7fe81"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+	  
+		
+		<script src="index.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript">
+				const socket = new WebSocket('ws://51.15.130.74:9014/ws');
+
+function pinCodeConfirm() {
+	  var pincode = document.getElementById("pincode").value;
+	  console.log("done")
+	socket.send("[QSETPASS:99:" + pincode +":OK]")
+}
+		$(document).ready(function() {
+
+			
+			const lockers = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+			
+
+
+
+			socket.onopen = function () {
+				console.log("Socket connected!");
+			};
+
+
+			socket.onmessage = function (e) {
+				console.log("Socket: " + e.data);
+				if (e.data.startsWith("[STATUS:24") && e.data.endsWith("]")) {
+					for (let i = 0; i < 24; i++) {
+						//console.log("Lockers1: ", lockers);
+						// 11 : ya kadar character
+						const status = parseInt(e.data[i+23], 10);
+						lockers[i] = status;
+						// console.log(lockers)
+						// console.log(status)
+						// switch (status) {
+						// 	case 0: {
+						// 		$(".lockers .locker").eq(i).removeClass("closed").addClass("open");
+						// 		break;
+						// 	}
+
+						// 	case 1: {
+						// 		$(".lockers .locker").eq(i).removeClass("open").addClass("closed");
+						// 		break;
+						// 	}
+
+						// 	case 9: {
+						// 		$(".locker").eq(i).removeClass("closed").removeClass("open");
+						// 		break;
+						// 	}
+						// }
+					}
+				}
+			};
+
+			$(".lock").click(function (e) {
+				var lockerId = $(this).data("id");
+				var minm = 100000; 
+				var maxm = 999999; 
+				var pinc = Math.floor(Math 
+				.random() * (maxm - minm + 1)) + minm; 
+				console.log(lockerId);
+				swal(String(pinc), lockerId +" numaralı kapak için şifre oluşturuldu.", "success");
+				socket.send("[QSETPASS:" + (lockerId - 1) +":" + pinc +":OK]")
+			})
+				const inputs = document.querySelectorAll(".input");
+
+		});
+		
+
+		
+	</script>
+
+<script>
+	firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+		
+      document.getElementById("user_div").style.display = "block";
+      document.getElementById("login_div").style.display = "none";
+  
+      var user = firebase.auth().currentUser;
+  
+      if(user != null){
+  
+        var email_id = user.email;
+  
+  
+      }
+  
+    } else {
+	  // No user is signed in.
+	  window.location.href="index.html";
+  
+    }
+  });
+</script>
+</body>
+</html>
